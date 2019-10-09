@@ -1,3 +1,4 @@
+[root@123 dw]# cat Dockerfile 
 FROM debian
 RUN apt  update && \
 apt install wget -y &&  \
@@ -21,11 +22,14 @@ echo "echo '首次运行同步时间较长耐心等待即可,默认24小时同�
 echo "/bin/cp -av /opt/web-go  /data/dw " >> /root/start.sh  &&  \
 echo "/usr/bin/rsync  -avz  --password-file=/root/passwd --log-file=/data/dw/rsync.log k8s@www.linuxtools.cn::common  /data/dw"  >> /root/start.sh &&  \
 echo "cd /data/dw" >> /root/start.sh  &&  \
-echo "./web-go" >> /root/start.sh  &&  \
 chmod  777  /root/start.sh  && \
+echo "/etc/init.d/cron  start" >> /root/start.sh  && \
+echo "/etc/init.d/cron  status" >> /root/start.sh  && \
+echo "./web-go" >> /root/start.sh  &&  \
 apt-get clean && rm -rf /var/lib/apt/lists/*
 
 
 EXPOSE 42344
 WORKDIR /data/dw
 ENTRYPOINT sh /root/start.sh
+[root@123 dw]# 
