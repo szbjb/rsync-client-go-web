@@ -1,4 +1,3 @@
-[root@123 dw]# cat Dockerfile 
 FROM debian
 RUN apt  update && \
 apt install wget -y &&  \
@@ -32,4 +31,4 @@ apt-get clean && rm -rf /var/lib/apt/lists/*
 EXPOSE 42344
 WORKDIR /data/dw
 ENTRYPOINT sh /root/start.sh
-[root@123 dw]# 
+
