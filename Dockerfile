@@ -23,7 +23,7 @@ echo "/bin/cp -av /opt/web-go  /data/dw " >> /root/start.sh  &&  \
 echo "/usr/bin/rsync  -avz  --password-file=/root/passwd --log-file=/data/dw/rsync.log k8s@www.linuxtools.cn::common  /data/dw"  >> /root/start.sh &&  \
 echo "cd /data/dw" >> /root/start.sh  &&  \
 chmod  777  /root/start.sh  && \
-echo "/etc/init.d/cron  start" >> /root/start.sh  && \
+echo "/etc/init.d/cron  restart" >> /root/start.sh  && \
 echo "/etc/init.d/cron  status" >> /root/start.sh  && \
 echo "./web-go" >> /root/start.sh  &&  \
 apt-get clean && rm -rf /var/lib/apt/lists/*
