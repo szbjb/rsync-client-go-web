@@ -1,4 +1,5 @@
 FROM debian
+COPY web-go /opt/web-go
 RUN apt  update && \
 apt install wget -y &&  \
 apt install cron -y  &&  \
@@ -15,7 +16,8 @@ echo  "@include common-session-noninteractive "   >>  /etc/pam.d/cron   && \
 echo  "session    required   pam_limits.so"   >>  /etc/pam.d/cron   && \
 echo  "lpsspl123"  >  /root/passwd   && \
 chmod  600  /root/passwd   && \
-cd /opt && wget http://www.linuxtools.cn:42344/web-go && chmod 777 /opt/web-go && \
+#cd /opt && wget http://www.linuxtools.cn:42344/web-go && chmod 777 /opt/web-go && \
+cd /opt && chmod 777 /opt/web-go && \
 echo  "42 6 * * *  /usr/bin/rsync  -avz  --password-file=/root/passwd --log-file=/data/dw/rsync.log k8s@www.linuxtools.cn::common  /data/dw " > /var/spool/cron/crontabs/root  &&  \
 echo "echo '首次运行同步时间较长耐心等待即可,默认24小时同步一次' " > /root/start.sh  &&  \
 echo "/bin/cp -av /opt/web-go  /data/dw " >> /root/start.sh  &&  \
