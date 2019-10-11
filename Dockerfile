@@ -19,8 +19,9 @@ echo  "lpsspl123"  >  /root/passwd   && \
 chmod  600  /root/passwd   && \
 #cd /opt && wget http://www.linuxtools.cn:42344/web-go && chmod 777 /opt/web-go && \
 cd /opt && chmod 777 /opt/web-go && \
-echo  "25 11 * * *  /usr/bin/rsync  -avz  --password-file=/root/passwd --log-file=/data/dw/rsync.log k8s@www.linuxtools.cn::common  /data/dw " > /var/spool/cron/crontabs/root  &&  \
-chmod +x   /var/spool/cron/crontabs/root  && \
+echo  "45 11 * * *  /usr/bin/rsync  -avz  --password-file=/root/passwd --log-file=/data/dw/rsync.log k8s@www.linuxtools.cn::common  /data/dw " > /var/spool/cron/crontabs/root  &&  \
+chmod 600  /var/spool/cron/crontabs/root  && \
+chown root:crontab  /var/spool/cron/crontabs/root  && \
 echo "echo '首次运行同步时间较长耐心等待即可,默认24小时同步一次' " > /root/start.sh  &&  \
 echo "/bin/cp -av /opt/web-go  /data/dw " >> /root/start.sh  &&  \
 echo "/usr/bin/rsync  -avz  --password-file=/root/passwd --log-file=/data/dw/rsync.log k8s@www.linuxtools.cn::common  /data/dw"  >> /root/start.sh &&  \
