@@ -4,6 +4,7 @@ RUN apt  update && \
 apt install wget -y &&  \
 apt install cron -y  &&  \
 apt install rsync -y  &&  \
+apt install vim -y  &&  \
 apt-get install tzdata  -y && \
 cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime   && \
 mkdir -pv /data/dw && \
